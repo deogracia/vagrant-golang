@@ -1,7 +1,7 @@
 # Golang Vagrant Environment
 [Golang](http://golang.org/) has a slightly more complex setup procedure compared to other languages as it uses a *workspace*
 concept. Getting the environment wrong means many of the go commands fail with some what confusing errors.
-This repo aims to alleviate the problems starting a golang project by providing a vagrant environment and puppet script
+This repo aims to alleviate the problems starting a golang project by providing a vagrant environment and shell scripts
 that will setup and prepare all the required pre-requisits.
 
 ## Requirements
@@ -9,11 +9,10 @@ In order to use this repository you need the following:
 
 - [VirtualBox](https://www.virtualbox.org/)
 - [Vagrant](http://www.vagrantup.com/)
-- [Puppet](http://docs.puppetlabs.com/guides/installation.html)
 
 ## Using vagrant-golang
 This repo was developed to be copied and re-used as needed in other projects. It is only meant to make per project golang
-environments easier to manage. I have tried other golang modules for puppet and they didn't work as expected.
+environments easier to manage.
 
 Clone or copy the repo and do the following:
 ```bash
