@@ -47,24 +47,33 @@ logAndPrint "###"
 logAndPrint "###"
 logAndPrint "02. On install go."
 logAndPrint "###"
-logAndPrint "02.01 On récupère la version ${_GO_VERSION}."
-mkdir -p ${_GO_SRC_PREFFIX} 2>&1 | tee -a $LogFile
-/usr/bin/wget -O ${_GO_SRC_PREFFIX}/go${_GO_VERSION}.linux-amd64.tar.gz https://storage.googleapis.com/golang/go${_GO_VERSION}.linux-amd64.tar.gz 2>&1 | tee -a $LogFile
+logAndPrint "02.01 On installe la version les pré-requis."
+apt-get install git -y 2>&1 | tee -a $LogFile
+apt-get install mercurial -y 2>&1 | tee -a $LogFile
 
 logAndPrint "###"
-logAndPrint "02.02 On décompresse dans ${_GO_PREFFIX}."
+logAndPrint "02.02 On récupère la version ${_GO_VERSION}."
+mkdir -p ${_GO_SRC_PREFFIX} 2>&1 | tee -a $LogFile
+/usr/bin/wget -nv -O ${_GO_SRC_PREFFIX}/go${_GO_VERSION}.linux-amd64.tar.gz https://storage.googleapis.com/golang/go${_GO_VERSION}.linux-amd64.tar.gz 2>&1 | tee -a $LogFile
+
+logAndPrint "###"
+logAndPrint "02.03 On supprime l'éventuelle version précédente."
+/bin/rm ${_GO_PREFFIX}/go -rf 2>&1 | tee -a $LogFile
+
+logAndPrint "###"
+logAndPrint "02.04 On décompresse dans ${_GO_PREFFIX}."
 /bin/tar -C ${_GO_PREFFIX} -xzf ${_GO_SRC_PREFFIX}/go${_GO_VERSION}.linux-amd64.tar.gz 2>&1 | tee -a $LogFile
 
 logAndPrint "###"
-logAndPrint "02.03 On ajoute ${_GO_PREFFIX}/go/bin  \$PATH."
+logAndPrint "02.05 On ajoute ${_GO_PREFFIX}/go/bin  \$PATH."
 /bin/echo "export PATH=${_GO_PREFFIX}/go/bin:\$PATH" >> /home/vagrant/.profile 2>&1 | tee -a $LogFile
 
 logAndPrint "###"
-logAndPrint "02.03 On set \$GOROOT ."
+logAndPrint "02.06 On set \$GOROOT ."
 /bin/echo "export GOROOT='${_GO_PREFFIX}/go'" >> /home/vagrant/.profile 2>&1 | tee -a $LogFile
 
 logAndPrint "###"
-logAndPrint "02.04 On set \$GOPATH ."
+logAndPrint "02.07 On set \$GOPATH ."
 /bin/echo "export GOPATH='/vagrant'" >> /home/vagrant/.profile 2>&1 | tee -a $LogFile
 
 logAndPrint "###"
