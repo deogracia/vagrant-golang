@@ -11,8 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "debian-7-64bits_LF"
-  config.vm.box_url = "http://home.clever-age.net/~lfelicite/vagrant/debian-7-64bits_LF.box"
-  config.vm.box_download_checksum = "41c5afac4559fb6dba34f188b2a46991"
+  config.vm.box_url = "https://db.tt/WiMVuiqy"
+  config.vm.box_download_checksum = "8a5af22cf9b798be4e0575d4056cf1a4"
   config.vm.box_download_checksum_type = "md5"
 
   # Disable automatic box update checking. If you disable this, then

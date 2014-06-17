@@ -66,7 +66,7 @@ logAndPrint "02.04 On décompresse dans ${_GO_PREFFIX}."
 
 logAndPrint "###"
 logAndPrint "02.05 On ajoute ${_GO_PREFFIX}/go/bin  \$PATH."
-/bin/echo "export PATH=${_GO_PREFFIX}/go/bin:\$PATH" >> /home/vagrant/.profile 2>&1 | tee -a $LogFile
+/usr/bin/sudo -H -i -u vagrant /bin/bash -c "/bin/echo \"export PATH='${_GO_PREFFIX}/go/bin:\$PATH'\" >> /home/vagrant/.profile" 2>&1 | tee -a $LogFile
 
 logAndPrint "###"
 logAndPrint "02.06 On set \$GOROOT ."
@@ -75,6 +75,11 @@ logAndPrint "02.06 On set \$GOROOT ."
 logAndPrint "###"
 logAndPrint "02.07 On set \$GOPATH ."
 /bin/echo "export GOPATH='/vagrant'" >> /home/vagrant/.profile 2>&1 | tee -a $LogFile
+
+logAndPrint "###"
+logAndPrint "02.08 On met à jour \$PATH ."
+/bin/echo "export PATH='\$GOPATH/bin:\$PATH'" >> /home/vagrant/.bashrc 2>&1 | tee -a $LogFile
+/usr/bin/sudo -H -i -u vagrant /bin/bash -c "/bin/echo \"export PATH='\$GOPATH/bin:\$PATH'\" >> /home/vagrant/.profile" 2>&1 | tee -a $LogFile
 
 logAndPrint "###"
 logAndPrint "###"
